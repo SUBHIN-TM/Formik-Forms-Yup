@@ -27,6 +27,7 @@ const Form3 = () => {
   const InitialValues = {
     description: "",
     objective: [],
+    objectiveIds:[]
   };
 
   const Schema = Yup.object({
@@ -43,12 +44,14 @@ const Form3 = () => {
     },
   });
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event,id) => {
     const { value, checked } = event.target;
     if (checked) { //IF MARKED CHECK IT WILL INCLUDED
       formik.setFieldValue('objective', [...formik.values.objective, value]);
-    } else { //IF CHECKED IS FALSE IT WILL REMOVE
+      formik.setFieldValue('objectiveIds', [...formik.values.objectiveIds, id]);
+    } else { //IF CHECKED IS FALSE IT WILL REZOVE
       formik.setFieldValue('objective', formik.values.objective.filter(item => item !== value));
+      formik.setFieldValue('objectiveIds', formik.values.objectiveIds.filter(item => item !== id));
     }
   };
 
@@ -77,7 +80,8 @@ const Form3 = () => {
                       <Chip
                         key={value}
                         label={value}
-                        onDelete={() => formik.setFieldValue('objective', formik.values.objective.filter(item => item !== value))}
+                        onDelete={() => {
+                          formik.setFieldValue('objective', formik.values.objective.filter(item => item !== value))}}
                       />
                     ))}
                   </Stack>
@@ -86,7 +90,7 @@ const Form3 = () => {
                 {objectiveArray.map((data) => (
                   <MenuItem key={data.id} value={data.name}>
                     <FormControlLabel
-                      control={<Checkbox onChange={handleCheckboxChange} value={data.name}  checked={formik.values.objective.includes(data.name)} />} //checked if the name already marked it will mark it as tick name
+                      control={<Checkbox  onChange={()=>handleCheckboxChange(event,data.id)} value={data.name}   checked={formik.values.objective.includes(data.name)} />} //checked if the name already marked it will mark it as tick name
                       label={data.name}
                     />
                   </MenuItem>
