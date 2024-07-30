@@ -126,7 +126,7 @@ const Form2 = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.objective && Boolean(formik.errors.objective)}
-              helperText={formik.errors.objective}
+              helperText={formik.touched.objective && formik.errors.objective}
             >
             </TextField>
             <Button type='submit' sx={{ width: 100 }} variant='outlined'>Submit</Button>

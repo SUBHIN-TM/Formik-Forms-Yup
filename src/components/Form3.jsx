@@ -45,7 +45,6 @@ const Form3 = () => {
 
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
-    console.log(checked);
     if (checked) { //IF MARKED CHECK IT WILL INCLUDED
       formik.setFieldValue('objective', [...formik.values.objective, value]);
     } else { //IF CHECKED IS FALSE IT WILL REMOVE
@@ -109,7 +108,7 @@ const Form3 = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.description && Boolean(formik.errors.description)}
-              helperText={formik.errors.description}
+              helperText={formik.touched.description && formik.errors.description}
             />
 
             <Button type='submit' sx={{ width: 100 }} variant='outlined'>Submit</Button>

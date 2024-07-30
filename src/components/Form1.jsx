@@ -10,7 +10,6 @@ import {
     InputLabel,
     Select,
     MenuItem,
-    Box,
     Stack,
     Typography,
     Container,
@@ -93,7 +92,7 @@ const Form1 = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             error={formik.touched.level && Boolean(formik.errors.level)}
-                            helperText={formik.errors.level}
+                            helperText={formik.touched.level && formik.errors.level}
                         >
                         </TextField>
                         <Button type='submit' sx={{ width: 100 }} variant='outlined'>Submit</Button>
