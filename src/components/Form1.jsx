@@ -1,4 +1,4 @@
-//SUBHJECT SELECTION
+//SUBJECT SELECTION
 import { useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -17,13 +17,13 @@ import {
 
 const Form1 = () => {
 
-    
-    const[output,setOutput]=useState({
-        subject:"",
-        level:""
+
+    const [output, setOutput] = useState({
+        subject: "",
+        level: ""
     })
 
-    const subjectArray =[
+    const subjectArray = [
         { id: 1, name: "English" },
         { id: 2, name: "Hindi" },
         { id: 3, name: "Malayalam" },
@@ -44,19 +44,21 @@ const Form1 = () => {
         initialValues: InitialValues,
         validationSchema: Schema,
         onSubmit: (values) => {
-           setOutput({
-            subject: values.subject,
-            level: values.level
-           })
-           alert(JSON.stringify(values))
+            setOutput({
+                subject: values.subject,
+                level: values.level
+            })
+            alert(JSON.stringify(values))
+            console.log(output);
+
         }
     })
 
     return (
         <Container>
-            <Typography>SUBJECT SELECTION FORM</Typography>
-            <Box component={"form"} noValidate sx={{ mt: 1 }} onSubmit={formik.handleSubmit}   >
-                <FormControl fullWidth margin='normal' required error={formik.touched.subject && (Boolean(formik.errors.subject))} >
+            <Typography  variant="h4" gutterBottom>SUBJECT SELECTION FORM</Typography>
+            <Box component={"form"} noValidate sx={{ display: 'flex', flexDirection: 'column', gap: 2}} onSubmit={formik.handleSubmit}   >
+                <FormControl sx={{ width: { xs: '100%', sm: '75%', md: '50%' } }} margin='normal' required error={formik.touched.subject && (Boolean(formik.errors.subject))} >
                     <InputLabel id="subject">Subject</InputLabel>
                     <Select
                         labelId="subject"
@@ -78,9 +80,9 @@ const Form1 = () => {
                     ) : null}
                 </FormControl>
                 <TextField
+                    sx={{ width: { xs: '100%', sm: '75%', md: '50%' } }}
                     margin="normal"
                     required
-                    fullWidth
                     id="level"
                     label="Level"
                     name="level"
@@ -91,7 +93,7 @@ const Form1 = () => {
                     helperText={formik.errors.level}
                 >
                 </TextField>
-                <Button type='submit' variant='outlined'>Submit</Button>
+                <Button type='submit' sx={{width:100}} variant='outlined'>Submit</Button>
 
             </Box>
         </Container>
