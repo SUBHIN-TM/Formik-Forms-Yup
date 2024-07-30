@@ -57,7 +57,7 @@ const Form1 = () => {
 
     return (
         <Container>
-            <Typography variant="h4" gutterBottom>SUBJECT SELECTION FORM</Typography>
+            <Typography variant="h4" gutterBottom  sx={{marginBottom:5}}>SUBJECT SELECTION FORM</Typography>
             <FormikProvider value={formik}>
                 <Form onSubmit={formik.handleSubmit} noValidate>
                     <Stack direction={"column"} spacing={2} >
