@@ -27,7 +27,7 @@ const Form3 = () => {
   const InitialValues = {
     description: "",
     objective: [],
-    objectiveIds:[]
+    objectiveIds: []
   };
 
   const Schema = Yup.object({
@@ -44,12 +44,12 @@ const Form3 = () => {
     },
   });
 
-  const handleCheckboxChange = (event,id) => {
+  const handleCheckboxChange = (event, id) => {
     const { value, checked } = event.target;
     if (checked) { //IF MARKED CHECK IT WILL INCLUDED
       formik.setFieldValue('objective', [...formik.values.objective, value]);
       formik.setFieldValue('objectiveIds', [...formik.values.objectiveIds, id]);
-    } else { //IF CHECKED IS FALSE IT WILL REZOVE
+    } else { //IF CHECKED IS FALSE IT WILL REMOVE
       formik.setFieldValue('objective', formik.values.objective.filter(item => item !== value));
       formik.setFieldValue('objectiveIds', formik.values.objectiveIds.filter(item => item !== id));
     }
@@ -80,18 +80,23 @@ const Form3 = () => {
                       <Chip
                         key={value}
                         label={value}
-                        onDelete={() => {
-                          formik.setFieldValue('objective', formik.values.objective.filter(item => item !== value))}}
+                        onDelete={() => {}} //IT WILL OPEN THE SELECT BOX
                       />
                     ))}
                   </Stack>
                 )}
               >
                 {objectiveArray.map((data) => (
-                  <MenuItem key={data.id} value={data.name}>
+                  <MenuItem key={data.id} value={data.name}       
+                    onClick={() => {
+                      const checked = !formik.values.objective.includes(data.name);
+                      handleCheckboxChange({ target: { value: data.name, checked } }, data.id);
+                    }}
+                    >
                     <FormControlLabel
-                      control={<Checkbox  onChange={()=>handleCheckboxChange(event,data.id)} value={data.name}   checked={formik.values.objective.includes(data.name)} />} //checked if the name already marked it will mark it as tick name
+                      control={<Checkbox value={data.name} checked={formik.values.objective.includes(data.name)} />} //checked if the name already marked it will mark it as tick name
                       label={data.name}
+                      
                     />
                   </MenuItem>
                 ))}
