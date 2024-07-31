@@ -80,23 +80,23 @@ const Form3 = () => {
                       <Chip
                         key={value}
                         label={value}
-                        onDelete={() => {}} //IT WILL OPEN THE SELECT BOX
+                        onDelete={() => { }} //IT WILL OPEN THE SELECT BOX
                       />
                     ))}
                   </Stack>
                 )}
               >
                 {objectiveArray.map((data) => (
-                  <MenuItem key={data.id} value={data.name}       
+                  <MenuItem key={data.id} value={data.name}
                     onClick={() => {
                       const checked = !formik.values.objective.includes(data.name);
                       handleCheckboxChange({ target: { value: data.name, checked } }, data.id);
                     }}
-                    >
+                  >
                     <FormControlLabel
+                      style={{ pointerEvents: "none" }}
                       control={<Checkbox value={data.name} checked={formik.values.objective.includes(data.name)} />} //checked if the name already marked it will mark it as tick name
                       label={data.name}
-                      
                     />
                   </MenuItem>
                 ))}
