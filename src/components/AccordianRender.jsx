@@ -1,7 +1,5 @@
 import React from 'react';
 import Accordian from './accordian/Accordian';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Typography from '@mui/material/Typography';
 
 const AccordianRender = () => {
@@ -13,9 +11,9 @@ const AccordianRender = () => {
     return (
         <div>
             {subjects.map((data) => (
-                <Accordian key={data} title={data} expandIcon={<ArrowDownwardIcon />}>
+                <Accordian key={data} title={data} >
                     {levelsAccordian.map((data) => (
-                        <Accordian key={data} title={data} expandIcon={<ArrowDownwardIcon />} >
+                        <Accordian key={data} title={data}  >
                             {lists.map((list)=>(
                                 <Typography key={list}>{list}</Typography>
                             ))}

@@ -4,14 +4,14 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-export default function Accordian({ title, children, expandIcon }) {
+
+export default function Accordian({ title, children }) {
     return (
         <div>
             <Accordion>
                 <AccordionSummary
-                    expandIcon={expandIcon}
+                    expandIcon={<ArrowDownwardIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header"
                 >
